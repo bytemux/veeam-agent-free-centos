@@ -10,7 +10,7 @@ echo "$announce" >> $logfile
 # mount share
 $script_dir/kesl.sh stop            # Option: Stop Kaspersky before running Veeam
 $script_dir/vpn.sh start            # Option: Share is not local, available via OpenVPN
-$script_dir/mount.sh start          # Option: Share is not local, connect with SMB
+$script_dir/mount.sh start          # Share is not local, connect with SMB
 
 mount_status=$(cat $mount_statefile | cut -d ":" -f2)
 vpn_status=$(cat $vpn_statefile | cut -d ":" -f2)
@@ -63,6 +63,6 @@ echo "$mail" | msmtp --file $script_dir/msmtp.conf -t to@domain.com
 
 # Clear before exit
 $script_dir/mount.sh stop
-$script_dir/vpn.sh stop
-$script_dir/kesl.sh start
+$script_dir/vpn.sh stop         # Option: Share is not local, available via OpenVPN
+$script_dir/kesl.sh start       # Option: Stop Kaspersky before running Veeam
 
