@@ -1,0 +1,13 @@
+[Unit]
+  Description=CIFS mount
+  Requires=network-online.target
+  After=network-online.service
+
+[Mount]
+  What=//10.1.1.2/hostname_backup/Backup/
+  Where=/mnt/veeamrepo
+  Options=username=hostname_backup,password=INSERT_PASSWORD,workgroup=INSERT_WORKGROUP,rw,vers=3.0
+  Type=cifs
+
+[Install]
+  WantedBy=multi-user.target
